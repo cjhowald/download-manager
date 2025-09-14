@@ -3,7 +3,7 @@
         "name": "smss.exe",
         "device": "Mario",
         "path": "\\Device\\HarddiskVolume2\\Windows\\System32\\smss.exe",
-        "status": "available"
+        "status": "scheduled"
     },
     {
         "name": "netsh.exe",
@@ -27,7 +27,7 @@
         "name": "cryptbase.dll",
         "device": "Yoshi",
         "path": "\\Device\\HarddiskVolume1\\Windows\\System32\\cryptbase.dll",
-        "status": "available"
+        "status": "scheduled"
     },
     {
         "name": "7za.exe",

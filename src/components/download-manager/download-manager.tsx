@@ -59,7 +59,11 @@ export const DownloadManager = ({ files }: DownloadManagerProps) => {
           checked={allRowsSelected ? true : false}
           onClick={handleSelectAllClicked}
         />
-        <span className="m-2">Selected 2</span>
+        <span className="min-w-1/12">
+          {selectedRows.size === 0
+            ? "None Selected"
+            : `Selected ${selectedRows.size}`}
+        </span>
         <button className="m-2">Download Selected</button>
       </div>
       <table className="text-left border-collapse w-full">
@@ -69,6 +73,7 @@ export const DownloadManager = ({ files }: DownloadManagerProps) => {
             <th className="p-2">Name</th>
             <th className="p-2">Device</th>
             <th className="p-2">Path</th>
+            <th className="p-2"></th>
             <th className="p-2">Status</th>
           </tr>
         </thead>

@@ -1,4 +1,5 @@
 import type { DownloadFile } from "../../types/download-file";
+import { formatStatus } from "../../util/status";
 
 export interface DownloadManagerRowProps {
   file: DownloadFile;
@@ -6,6 +7,8 @@ export interface DownloadManagerRowProps {
   selected: boolean;
   onSelect: (selected: boolean) => void;
 }
+
+const greenDot = <span>&#128994;</span>; // UTF-8 green dot
 
 export const DownloadManagerRow = ({
   file,
@@ -39,7 +42,10 @@ export const DownloadManagerRow = ({
         <label htmlFor={id}>{file.device}</label>
       </td>
       <td className="p-2">{file.path}</td>
-      <td className="p-2">{file.status}</td>
+      <td className="p-2 text-right">
+        {file.status === "available" ? greenDot : null}
+      </td>
+      <td className="p-2">{formatStatus(file.status)}</td>
     </tr>
   );
 };
