@@ -13,7 +13,10 @@ const getFileID = (file: DownloadFile) => `${file.device}-${file.path}`;
 export const DownloadManager = ({ files }: DownloadManagerProps) => {
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
 
-  const allRowsSelected = selectedRows.size === files.length;
+  const selectableRows = files.filter((file) => file.status === "available");
+
+  const allRowsSelected = selectedRows.size === selectableRows.length;
+  const noRowsSelected = selectedRows.size === 0;
 
   const handleSelectChange = (id: string, selected: boolean) => {
     if (selected) {
@@ -36,7 +39,7 @@ export const DownloadManager = ({ files }: DownloadManagerProps) => {
   };
 
   const selectAll = () => {
-    const IDs = files.map(getFileID);
+    const IDs = selectableRows.map(getFileID);
     setSelectedRows(new Set([...IDs]));
   };
 
@@ -50,6 +53,18 @@ export const DownloadManager = ({ files }: DownloadManagerProps) => {
     }
   };
 
+  const getSelectedFiles = () =>
+    files.filter((file) => selectedRows.has(getFileID(file)));
+
+  const showDownloadAlert = () => {
+    const alertMessage =
+      "Downloading the following files:\n" +
+      getSelectedFiles()
+        .map((file) => `-${file.device}: ${file.path}`)
+        .join("\n");
+    alert(alertMessage);
+  };
+
   return (
     <div className="border border-gray-300 w-full">
       <div className="flex items-center border-b border-gray-300">
@@ -60,11 +75,15 @@ export const DownloadManager = ({ files }: DownloadManagerProps) => {
           onClick={handleSelectAllClicked}
         />
         <span className="min-w-1/12">
-          {selectedRows.size === 0
-            ? "None Selected"
-            : `Selected ${selectedRows.size}`}
+          {noRowsSelected ? "None Selected" : `Selected ${selectedRows.size}`}
         </span>
-        <button className="m-2">Download Selected</button>
+        <button
+          className="m-2"
+          disabled={noRowsSelected}
+          onClick={showDownloadAlert}
+        >
+          Download Selected
+        </button>
       </div>
       <table className="text-left border-collapse w-full">
         <thead className="border-b border-gray-300">
