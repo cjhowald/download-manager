@@ -6,5 +6,5 @@
 - [x] Clicking the select-all checkbox should select all items if none or some are selected.
 - [x] Clicking the select-all checkbox should de-select all items if all are currently selected.
 - [x] Status should be correctly formatted
-- [ ] Clicking "Download Selected" when some or all items are displayed should generate an alert box with the path and device of all selected files.
+- [x] Clicking "Download Selected" when some or all items are displayed should generate an alert box with the path and device of all selected files.
 - [ ] Precise/exact HTML formatting/styling to match the mockup is not required however rows should change colour when selected and on hover.

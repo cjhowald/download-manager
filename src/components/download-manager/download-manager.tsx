@@ -70,13 +70,14 @@ export const DownloadManager = ({ files }: DownloadManagerProps) => {
       <div className="flex items-center border-b border-gray-300">
         <input
           className="m-2"
+          id="select-all-checkbox"
           type="checkbox"
           checked={allRowsSelected ? true : false}
           onClick={handleSelectAllClicked}
         />
-        <span className="min-w-1/12">
+        <label htmlFor="select-all-checkbox" className="min-w-1/12">
           {noRowsSelected ? "None Selected" : `Selected ${selectedRows.size}`}
-        </span>
+        </label>
         <button
           className="m-2"
           disabled={noRowsSelected}
