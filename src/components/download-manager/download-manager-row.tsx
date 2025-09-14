@@ -20,8 +20,8 @@ export const DownloadManagerRow = ({
   const rowID = `row-${id}`;
   return (
     <tr
-      className="border-b border-gray-300 p-2 cursor-pointer"
-      onClick={() => disableSelect ? null : onSelect(!selected)}
+      className={`border-b border-gray-300 p-2 cursor-pointer ${selected ? "bg-gray-100" : "hover:bg-gray-50"}`}
+      onClick={() => (disableSelect ? null : onSelect(!selected))}
       id={rowID}
     >
       <td className="m-x-4 p-2">
@@ -31,7 +31,7 @@ export const DownloadManagerRow = ({
           checked={disableSelect ? false : selected}
           aria-labelledby={rowID}
           type="checkbox"
-          onChange={() => disableSelect ? null : onSelect(!selected)}
+          onChange={() => (disableSelect ? null : onSelect(!selected))}
         />
       </td>
       <td className="p-2">
