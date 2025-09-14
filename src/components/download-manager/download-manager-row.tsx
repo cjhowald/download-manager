@@ -13,12 +13,14 @@ export const DownloadManagerRow = ({
   selected,
   onSelect,
 }: DownloadManagerRowProps) => {
+  const disableSelect = file.status !== "available";
   return (
     <tr className="border-b border-gray-300 p-2" id={id}>
       <td className="m-x-4 p-2">
         <input
           id={id}
-          checked={selected}
+          disabled={disableSelect}
+          checked={disableSelect ? false : selected}
           type="checkbox"
           onChange={(e) => onSelect(!!e.target.checked)}
         />
