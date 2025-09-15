@@ -1,28 +1,49 @@
-import tailwindcss from '@tailwindcss/vite'
-import react from '@vitejs/plugin-react'
+/// <reference types="vitest" />
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
 
-import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { defineConfig } from 'vite'
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { defineConfig } from "vite";
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
     lib: {
-      entry: resolve(__dirname, 'lib/main.js'),
-      name: 'DownloadManager',
-      fileName: 'download-manager',
+      entry: resolve(__dirname, "lib/main.js"),
+      name: "DownloadManager",
+      fileName: "download-manager",
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: ["react", "react-dom"],
       output: {
         globals: {
-          "react": 'React',
-          "react-dom": 'ReactDOM',
+          react: "React",
+          "react-dom": "ReactDOM",
         },
       },
     },
   },
-})
+  test: {
+    browser: {
+      enabled: true,
+      provider: "playwright",
+      headless: true,
+      instances: [{ browser: "chromium" }],
+    },
+    coverage: {
+      exclude: [
+        "*.config.[tj]s",
+        "src/App.tsx",
+        "src/main.tsx",
+        "**/*.d.ts",
+        "lib/*",
+        "src/components/index.ts",
+        "dist/*",
+        "**/types/*.ts",
+      ],
+    },
+  },
+});

@@ -86,12 +86,15 @@ export const DownloadManager = ({ files }: DownloadManagerProps) => {
           className="m-2"
           id="select-all-checkbox"
           type="checkbox"
+          aria-label={
+            noRowsSelected ? "select all files" : "un-select all files"
+          }
           state={getSelectAllCheckboxState()}
-          onClick={handleSelectAllClicked}
+          onChange={handleSelectAllClicked}
         />
-        <label htmlFor="select-all-checkbox" className="min-w-1/12">
+        <div className="min-w-1/12">
           {noRowsSelected ? "None Selected" : `Selected ${selectedRows.size}`}
-        </label>
+        </div>
         <button
           className="m-2"
           disabled={noRowsSelected}

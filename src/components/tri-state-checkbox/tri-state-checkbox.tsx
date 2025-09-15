@@ -13,8 +13,8 @@ export const TriStateCheckbox = (props: TriStateCheckboxProps) => {
   const { state } = props;
 
   useEffect(() => {
-    if (state === "indeterminate" && ref.current) {
-      ref.current.indeterminate = true;
+    if (ref.current) {
+      ref.current.indeterminate = state === "indeterminate";
     }
   }, [state]);
 

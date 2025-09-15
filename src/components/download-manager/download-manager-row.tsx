@@ -8,7 +8,7 @@ export interface DownloadManagerRowProps {
   onSelect: (selected: boolean) => void;
 }
 
-const greenDot = <span>&#128994;</span>; // UTF-8 green dot
+const greenDot = <span>&#128994;</span>; // unicode green dot
 
 export const DownloadManagerRow = ({
   file,
