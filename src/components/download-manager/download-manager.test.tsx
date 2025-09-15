@@ -7,6 +7,32 @@ test("renders", () => {
   render(<DownloadManager files={[]} />);
 });
 
+test("renders with empty strings", async () => {
+  const {} = render(
+    <DownloadManager
+      files={[
+        {
+          name: "",
+          device: "",
+          path: "",
+          //@ts-ignore
+          status: "",
+        },
+      ]}
+    />,
+  );
+});
+
+test("renders with empty object", async () => {
+  //@ts-ignore
+  const {} = render(<DownloadManager files={[{}]} />);
+});
+
+test("renders with null", async () => {
+  //@ts-ignore
+  const {} = render(<DownloadManager files={[null]} />);
+});
+
 test("Available rows can be selected by clicking the checkbox", async () => {
   const { getByRole } = render(
     <DownloadManager
@@ -21,7 +47,7 @@ test("Available rows can be selected by clicking the checkbox", async () => {
     />,
   );
 
-  const checkbox = getByRole("checkbox", { name: "foo" });
+  const checkbox = getByRole("checkbox", { name: "selectable foo bar" });
   await userEvent.click(checkbox);
 
   expect(checkbox).toBeChecked();

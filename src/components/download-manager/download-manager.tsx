@@ -12,12 +12,12 @@ export interface DownloadManagerProps {
 }
 
 // assumption: combination of device and path is unique among the list of files
-const getFileID = (file: DownloadFile) => `${file.device}-${file.path}`;
+const getFileID = (file: DownloadFile) => `${file?.device}-${file?.path}`;
 
 export const DownloadManager = ({ files }: DownloadManagerProps) => {
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
 
-  const selectableRows = files.filter((file) => file.status === "available");
+  const selectableRows = files.filter((file) => file?.status === "available");
 
   const allRowsSelected = selectedRows.size === selectableRows.length;
   const noRowsSelected = selectedRows.size === 0;
@@ -122,6 +122,7 @@ export const DownloadManager = ({ files }: DownloadManagerProps) => {
               <DownloadManagerRow
                 file={file}
                 id={id}
+                key={id}
                 selected={selectedRows.has(id)}
                 onSelect={(selected) => handleSelectChange(id, selected)}
               />

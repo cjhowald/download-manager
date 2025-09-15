@@ -16,7 +16,7 @@ export const DownloadManagerRow = ({
   selected,
   onSelect,
 }: DownloadManagerRowProps) => {
-  const disableSelect = file.status !== "available";
+  const disableSelect = file?.status !== "available";
   const rowID = `row-${id}`;
   return (
     <tr
@@ -34,18 +34,13 @@ export const DownloadManagerRow = ({
           onChange={() => (disableSelect ? null : onSelect(!selected))}
         />
       </td>
-      <td className="p-2">
-        <label htmlFor={id}></label>
-        {file.name}
-      </td>
-      <td className="p-2">
-        <label htmlFor={id}>{file.device}</label>
-      </td>
-      <td className="p-2">{file.path}</td>
+      <td className="p-2">{file?.name}</td>
+      <td className="p-2">{file?.device}</td>
+      <td className="p-2">{file?.path}</td>
       <td className="p-2 text-right">
-        {file.status === "available" ? greenDot : null}
+        {file?.status === "available" ? greenDot : null}
       </td>
-      <td className="p-2">{formatStatus(file.status)}</td>
+      <td className="p-2">{formatStatus(file?.status)}</td>
     </tr>
   );
 };
