@@ -2,6 +2,10 @@ import "./download-manager.css";
 import type { DownloadFile } from "../../types/download-file";
 import { useState } from "react";
 import { DownloadManagerRow } from "./download-manager-row";
+import {
+  TriStateCheckbox,
+  type CheckboxState,
+} from "../tri-state-checkbox/tri-state-checkbox";
 
 export interface DownloadManagerProps {
   files: DownloadFile[];
@@ -65,14 +69,24 @@ export const DownloadManager = ({ files }: DownloadManagerProps) => {
     alert(alertMessage);
   };
 
+  const getSelectAllCheckboxState = (): CheckboxState => {
+    if (allRowsSelected) {
+      return "selected";
+    } else if (noRowsSelected) {
+      return "unselected";
+    } else {
+      return "indeterminate";
+    }
+  };
+
   return (
     <div className="border border-gray-300 w-full">
       <div className="flex items-center border-b border-gray-300">
-        <input
+        <TriStateCheckbox
           className="m-2"
           id="select-all-checkbox"
           type="checkbox"
-          checked={allRowsSelected ? true : false}
+          state={getSelectAllCheckboxState()}
           onClick={handleSelectAllClicked}
         />
         <label htmlFor="select-all-checkbox" className="min-w-1/12">

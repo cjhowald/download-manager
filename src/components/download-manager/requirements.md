@@ -1,7 +1,7 @@
 - [x] Only those that have a status of "available" are currently able to be downloaded. Your implementation should manage this.
 - [x] The select-all checkbox should be in an unselected state if no items are selected.
 - [x] The select-all checkbox should be in a selected state if all items are selected.
-- [ ] The select-all checkbox should be in an indeterminate state if some but not all items are selected.
+- [x] The select-all checkbox should be in an indeterminate state if some but not all items are selected.
 - [x] The "Selected 2" text should reflect the count of selected items and display "None Selected" when there are none selected.
 - [x] Clicking the select-all checkbox should select all items if none or some are selected.
 - [x] Clicking the select-all checkbox should de-select all items if all are currently selected.
