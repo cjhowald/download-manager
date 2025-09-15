@@ -5,9 +5,10 @@ This repo provides a shared React component for managing downloads.
 
 1. Checkout the repo
 1. Install dependencies: `npm install`
-2. Run a local preview: `npm run dev`
+2. Run a local demo: `npm run dev`
 
-Note that `App.tsx`, `App.css`, `min.tsx`, and `index.css` are just for previewing the reusable component. `lib/main.ts` is the entrypoint for the resuable component (`src/components/download-manager`).
+Note that `demo/` is a simple React app for demoing the reusable component. 
+`lib/main.ts` is the entrypoint for the resuable component (`src/components/download-manager`).
 
 ## Run tests
 

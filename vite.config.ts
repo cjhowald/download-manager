@@ -37,8 +37,7 @@ export default defineConfig({
     coverage: {
       exclude: [
         "*.config.[tj]s",
-        "src/App.tsx",
-        "src/main.tsx",
+        "src/demo/*",
         "**/*.d.ts",
         "lib/*",
         "src/components/index.ts",
