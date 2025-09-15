@@ -8,18 +8,18 @@ test("format available", () => {
   expect(formatStatus("available")).toEqual("Available");
 });
 test("format empty", () => {
-  //@ts-ignore
+  //@ts-expect-error protect against input from outside this project not matching the type
   expect(formatStatus("")).toEqual("");
 });
 test("format null", () => {
-  //@ts-ignore
+  //@ts-expect-error protect against input from outside this project not matching the type
   expect(formatStatus(null)).toEqual("");
 });
 test("format undefined", () => {
-  //@ts-ignore
+  //@ts-expect-error protect against input from outside this project not matching the type
   expect(formatStatus(undefined)).toEqual("");
 });
 test("format whitespace", () => {
-  //@ts-ignore
+  //@ts-expect-error protect against input from outside this project not matching the type
   expect(formatStatus(" ")).toEqual(" ");
 });

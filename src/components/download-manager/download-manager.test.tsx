@@ -8,14 +8,14 @@ test("renders", () => {
 });
 
 test("renders with empty strings", async () => {
-  const {} = render(
+  render(
     <DownloadManager
       files={[
         {
           name: "",
           device: "",
           path: "",
-          //@ts-ignore
+          //@ts-expect-error protect against input from outside this project not matching the type
           status: "",
         },
       ]}
@@ -24,13 +24,13 @@ test("renders with empty strings", async () => {
 });
 
 test("renders with empty object", async () => {
-  //@ts-ignore
-  const {} = render(<DownloadManager files={[{}]} />);
+  //@ts-expect-error protect against input from outside this project not matching the type
+  render(<DownloadManager files={[{}]} />);
 });
 
 test("renders with null", async () => {
-  //@ts-ignore
-  const {} = render(<DownloadManager files={[null]} />);
+  //@ts-expect-error protect against input from outside this project not matching the type
+  render(<DownloadManager files={[null]} />);
 });
 
 test("Available rows can be selected by clicking the checkbox", async () => {
@@ -321,34 +321,32 @@ test("select count should show the correct row count when some rows selected", a
 });
 
 test("select count show none when no rows selected", async () => {
-  async () => {
-    const { getByText } = render(
-      <DownloadManager
-        files={[
-          {
-            name: "selectable",
-            device: "foo",
-            path: "bar",
-            status: "available",
-          },
-          {
-            name: "selectable2",
-            device: "foo2",
-            path: "bar",
-            status: "available",
-          },
-          {
-            name: "not selectable",
-            device: "foo3",
-            path: "bar",
-            status: "scheduled",
-          },
-        ]}
-      />,
-    );
+  const { getByText } = render(
+    <DownloadManager
+      files={[
+        {
+          name: "selectable",
+          device: "foo",
+          path: "bar",
+          status: "available",
+        },
+        {
+          name: "selectable2",
+          device: "foo2",
+          path: "bar",
+          status: "available",
+        },
+        {
+          name: "not selectable",
+          device: "foo3",
+          path: "bar",
+          status: "scheduled",
+        },
+      ]}
+    />,
+  );
 
-    expect(getByText("None Selected")).toBeInTheDocument();
-  };
+  expect(getByText("None Selected")).toBeInTheDocument();
 });
 
 test("Clicking the select-all checkbox should select all items if none items are selected.", async () => {
